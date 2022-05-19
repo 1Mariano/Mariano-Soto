@@ -1,0 +1,194 @@
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+  html{
+      overflow-x: hidden;
+  }
+  body{
+    overflow-x: hidden;
+    
+}
+
+/*------------------------------------------------------------ HEADER ------------------------------------------------------------*/
+/* Contenedor del logo/nombre la empresa y el menu de navegación */
+.header{
+    background-color: rgb(204, 179, 179);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+    font-family: 'Acme', sans-serif;
+    /*overflow-x: hidden;*/
+}
+/* contenedor de logo/nombre la empresa*/
+.nombre{
+    color: white;
+    font-size: 35px;
+    padding: 0 80px;
+    font-weight: bold;
+    user-select: none;
+    text-transform: uppercase;
+}
+/* Iconos usados para el menu*/
+.iconos{
+    width: auto;
+    height: 25px;
+    
+}
+/* Estilos de los enlaces */
+.botones-menu{
+    text-decoration: none;
+    
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 3px;
+    /*margin: 0 5px;*/
+    padding: 10px 15px;   
+    user-select: none;
+}
+/* Lista del UL de menu de navegación */
+.lista{
+    display: flex;
+    list-style: none;
+    margin-right: 25px;
+    gap: 20px;
+}
+/* Efecto de seleccion y actividad del menu */
+.botones-menu:hover, .active {
+    background-color: rgba(0, 0, 0, .3);
+    transform: scale(1.1);
+    transition: all .8s;
+    color: white;
+    -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+    -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+    box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+    
+}
+
+/*------- Responsive del Header -------*/
+.header-mobile{
+    display: none;
+    background: transparent;
+    cursor: pointer;
+}
+/*.header-mobile-icon{
+    width: 40px;
+    height: 40px;
+
+}*/
+#cerrar{
+    display: none;
+}
+
+/* 980px */
+@media(max-width:980px){
+    .header{
+        position: absolute;
+        
+    }
+    .header-mobile{
+        display: block;
+        z-index: 999;
+        /*border: 3px solid black;*/
+        
+        
+    }
+    
+    #abrir{
+        color:black;
+    }
+    .active-header {
+        position: absolute;
+        
+        
+    }
+    .menu{
+        /*display: none;*/
+        width: 100%;
+        height: 100vh;
+        background-color: wheat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*transicion de hacia la barra lateral*/
+        /*transform: translateX(100%);*/
+        /*transition: all 1s linear;*/
+        
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        
+    }
+    .active-header .menu{
+        
+        transition: all 1s linear;
+    }
+    
+    /*30:25*/
+
+
+    .lista{
+        flex-direction: column;
+        align-items: center;
+        margin:0;
+    }
+    /* Cuando active-header este presente pasa todo esto */
+    .active-header .menu{
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        
+        
+    }
+    .active-header #cerrar{
+        display: block;
+    }
+    .active-header #abrir{
+        display: none;
+    }
+    .botones-menu{
+        min-width: 300px;
+    }
+    .botones-menu:hover, .active {
+        background-color: rgba(0, 0, 0, .3);
+        transform: scale(1.1);
+        transition: all .8s;
+        color: white;
+        -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+        -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+        box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
+        
+    }
+    .acciones{
+        height: 60px;
+        width: 60px;
+        margin-right: 20px;
+        color: rgba(0, 0, 0, .7);
+    }
+    
+}
+
+@media (max-width: 560px){
+    .header{
+        padding: 0 24px;
+    }
+
+}
+
+/*-----------------------------------------------------FIN DEL HEADER ------------------------------------------------------------*/
+
+
