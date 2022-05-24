@@ -3,7 +3,7 @@ import { BsFillCartCheckFill } from 'react-icons/bs';
 import { IoIosListBox } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import React, { useState } from 'react';
-
+import './Navbar.css';
 export const Navbar = () => {
     const [estado, setEstado] = useState(false)
 
