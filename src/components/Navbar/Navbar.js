@@ -1,9 +1,10 @@
 import { AiFillHome, AiFillInfoCircle, AiFillCloseCircle } from 'react-icons/ai'; 
-import { BsFillCartCheckFill } from 'react-icons/bs';
 import { IoIosListBox } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import React, { useState } from 'react';
 import './Navbar.css';
+import { CartWidget } from '../CardWidget/CartWidget';
+
 export const Navbar = () => {
     const [estado, setEstado] = useState(false)
 
@@ -20,7 +21,7 @@ export const Navbar = () => {
           {/*evitar vulnerabilidades con "rel="noreferrer"*/}
           <a className="botones-menu active" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><AiFillHome className="iconos" /><li>Inicio</li></a>
           <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><IoIosListBox className="iconos" /><li>Productos</li></a>
-          <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><BsFillCartCheckFill className="iconos" /><li>Carrito</li></a>
+          <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><CartWidget className="iconos"/><li>Carrito</li></a>
           <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><AiFillInfoCircle className="iconos" /><li>Información</li></a>
         </ul>
       </nav>
