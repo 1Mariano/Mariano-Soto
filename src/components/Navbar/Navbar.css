@@ -9,7 +9,7 @@
   }
   body{
     overflow-x: hidden;
-    
+    font-family: 'Acme', sans-serif;
 }
 
 /*------------------------------------------------------------ HEADER ------------------------------------------------------------*/
@@ -21,7 +21,7 @@
     align-items: center;
     height: 75px;
     width: 100%;
-    font-family: 'Acme', sans-serif;
+    
     
     /*overflow-x: hidden;*/
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import "./ItemListContainer.css";
-const ItemListContainer = ( { nombre, descripcion, precio, imagen })=> {
+
+
+const ItemListContainer = ( { nombre, descripcion, precio, imagen, contador })=> {
 
   return (
       <div className="cards">
@@ -8,7 +10,8 @@ const ItemListContainer = ( { nombre, descripcion, precio, imagen })=> {
         <img className="imagen-cards" alt="imagen grafica" src={imagen} />
         <p>{descripcion}</p>
         <h2 className="precio">{precio}</h2>
-        <button className="boton-cards">sumar al carrito</button>
+        
+        <div>{contador}</div>
       </div>
   )
 }
