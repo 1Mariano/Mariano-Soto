@@ -1,17 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./ItemListContainer.css";
+import { pedirDatos } from "../../mock/pedirDatos"
+import { ItemList } from '../ItemList/ItemList';
 
+const ItemListContainer = ( )=> {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const ItemListContainer = ( { nombre, descripcion, precio, imagen, contador })=> {
+  useEffect(()=>{
+    setLoading(true)
+
+    pedirDatos()
+        .then((resp) => {
+          setItems( resp )
+        })
+        .catch((error) => {
+          console.log('ERROR', error)
+        })
+        .finally(()=>{
+          setLoading(false)
+        })
+  }, [])
 
   return (
-      <div className="cards">
-        <h2>{nombre}</h2>
-        <img className="imagen-cards" alt="imagen grafica" src={imagen} />
-        <p>{descripcion}</p>
-        <h2 className="precio">{precio}</h2>
+      <div className="cards-contenedor">
         
-        <div>{contador}</div>
+        {
+          loading
+          ?
+          "Cargando..."
+          :
+          <ItemList items={items}/>
+        }
+        
       </div>
   )
 }

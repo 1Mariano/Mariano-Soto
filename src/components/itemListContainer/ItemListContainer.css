@@ -1,7 +1,7 @@
 /* Contenedor de los Cards*/
 .cards-contenedor{
     display: flex;
-    width: 80%;
+    width: 90%;
     max-width: 1500px;
     margin: 0 auto;
     height: auto;

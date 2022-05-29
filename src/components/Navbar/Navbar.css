@@ -140,7 +140,7 @@
         transform: translateX(100%);
         
         opacity: 0;
-        transition: transform 1s;
+        transition: all 1s;
         
         pointer-events: none;
         
