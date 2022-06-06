@@ -26,12 +26,11 @@ export const ItemCount = ( { nombre, cantidad, stock, inicial }) =>{
     return(
         <>
         <div className="contenedor-disponible">
-            <h3 className="nombre-producto">{nombre}</h3>
-            <p className={`${inicial!==0 ? "cantidad-producto":"cantidad-producto-no"}`}>Cantidad Disponible: {cantidad}</p>
+            <p className={`cant-disp ${inicial!==0 ? "cantidad-producto":"cantidad-producto-no"}`}>Cantidad Disponible: {cantidad}</p>
             <div className="contenedor-operacion">
-                <GrFormSubtract className="icono-operacion" onClick={quitarComponente}/>
+                <button className="cont-boton"><GrFormSubtract className="icono-operacion" onClick={quitarComponente}/></button>
                 <p className="cantidad">{inicial!==0 ? estado : 0}</p>
-                <IoMdAdd className="icono-operacion"  onClick={agregarComponente}/>
+                <button className="cont-boton"><IoMdAdd className="icono-operacion"  onClick={agregarComponente}/></button>
             </div>
         </div>
             <button className={inicial!==0 ? "boton-operacion" : "boton-operacion-no"}>{inicial!==0 ? 'Agregar Al carrito' : 'No hay stock'}</button>

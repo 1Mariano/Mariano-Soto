@@ -4,10 +4,11 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import React, { useState } from 'react';
 import './Navbar.css';
 import { CartWidget } from '../CardWidget/CartWidget';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
     const [estado, setEstado] = useState(false)
-
+    
     const cambiarEstado = () =>{
       console.log(estado);
       estado ? setEstado(false) : setEstado(true);
@@ -19,10 +20,10 @@ export const Navbar = () => {
       <nav className="menu">
         <ul className="lista">
           {/*evitar vulnerabilidades con "rel="noreferrer"*/}
-          <a className="botones-menu active" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><AiFillHome className="iconos" /><li>Inicio</li></a>
-          <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><IoIosListBox className="iconos" /><li>Productos</li></a>
-          <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><CartWidget className="iconos"/><li>Carrito</li></a>
-          <a className="botones-menu" href="https://www.youtube.com/" target="_blank" rel="noreferrer"><AiFillInfoCircle className="iconos" /><li>Información</li></a>
+          <Link to={"/"} className="botones-menu" rel="noreferrer"><AiFillHome className="iconos" /><li>Inicio</li></Link>
+          <Link to={"/productos"} className="botones-menu" rel="noreferrer"><IoIosListBox className="iconos" /><li>Productos</li></Link>
+          <Link to={"/carrito"} className="botones-menu" rel="noreferrer"><CartWidget className="iconos"/><li>Carrito</li></Link>
+          <Link to={"/informacion"} className="botones-menu" rel="noreferrer"><AiFillInfoCircle className="iconos" /><li>Información</li></Link>
         </ul>
       </nav>
       <div className="header-mobile" onClick={cambiarEstado} >

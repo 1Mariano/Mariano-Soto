@@ -7,3 +7,11 @@ export const pedirDatos = () =>{
         }, 3000)
     })
 }
+
+export const pedirDatosUnicoProducto = ( ) =>{
+    return new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            resolve(Productos)
+        }, 3000)
+    })
+}
