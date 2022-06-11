@@ -9,7 +9,7 @@ export default function ItemDetailContainer(  ) {
     const [loading, setLoading] = useState(true);
     
     const { itemId } = useParams()
-    console.log(itemId)
+    //console.log(itemId)
     const navigate = useNavigate()
 
     const handleVolver= () =>{
@@ -31,7 +31,7 @@ export default function ItemDetailContainer(  ) {
             .finally(()=>{
                 setLoading(false)
             })
-    },[itemId])
+    },[itemId]) 
 
 
 

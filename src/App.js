@@ -1,6 +1,7 @@
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Carrito from "./components/Carrito/Carrito";
 import Footer from "./components/Footer/Footer";
 import Inicio from "./components/Inicio/Inicio";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
@@ -23,6 +24,7 @@ function App() {
         <Route path='/' element={<Inicio />}/>
         <Route path='/item/:itemId' element={<ItemDetailContainer />} />
         <Route path='/productos' element={<ItemListContainer />}/>
+        <Route path='/carrito' element={<Carrito />}/>
       </Routes>
       
     </div>

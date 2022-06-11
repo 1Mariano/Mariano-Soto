@@ -3,7 +3,7 @@ import { IoMdAdd } from 'react-icons/io'
 import { GrFormSubtract } from 'react-icons/gr'
 import "./ItemCount.css"
 
-export const ItemCount = ( { nombre, cantidad, stock, inicial }) =>{
+export const ItemCount = ( { cantidad, stock, inicial,cantidadItems, setCantidad,  onAdd }) =>{
 
     const [ estado, setEstado ] = useState(1);
     
@@ -11,6 +11,7 @@ export const ItemCount = ( { nombre, cantidad, stock, inicial }) =>{
         //if(estado > 0 && estado < stock)
         if(stock && cantidad > 0 && estado < cantidad){
             setEstado(estado + 1)
+            setCantidad(cantidadItems + 1)
         }
         
     }
@@ -19,9 +20,12 @@ export const ItemCount = ( { nombre, cantidad, stock, inicial }) =>{
         //if(estado > 0 && estado < stock)
         if(stock && cantidad > 0 && estado > 1){
             setEstado(estado - 1)
+            setCantidad(cantidadItems - 1)
         }
         
     }
+
+    
     
     return(
         <>
@@ -33,7 +37,7 @@ export const ItemCount = ( { nombre, cantidad, stock, inicial }) =>{
                 <button className="cont-boton"><IoMdAdd className="icono-operacion"  onClick={agregarComponente}/></button>
             </div>
         </div>
-            <button className={inicial!==0 ? "boton-operacion" : "boton-operacion-no"}>{inicial!==0 ? 'Agregar Al carrito' : 'No hay stock'}</button>
+            <button onClick={onAdd} className={inicial!==0 ? "boton-operacion" : "boton-operacion-no"}>{inicial!==0 ? 'Agregar Al carrito' : 'No hay stock'}</button>
         </>
     )
 }
