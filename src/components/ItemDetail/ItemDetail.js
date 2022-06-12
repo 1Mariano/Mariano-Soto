@@ -1,21 +1,26 @@
 import "./ItemDetail.css"
 import { ItemCount } from "../ItemCount/ItemCount"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { CartContext } from "../../context/CartContext"
 
 
 export default function ItemDetail( { item } ) {
   
   const [cantidadItems, setCantidadItems] = useState(1)
-  const [cambiarBoton, setCambiarBoton] = useState(false)
+  //const [cambiarBoton, setCambiarBoton] = useState(false)
+
+  const { addItem, isInCart } = useContext(CartContext)
 
   const handleAgregar = () => {
     const itemToCart = {
       ...item,
       cantidadItems
+      
     }   
     console.log(itemToCart)
-    setCambiarBoton(true)
+    //setCambiarBoton(true)
+    addItem(itemToCart)
   }
   
    
@@ -27,7 +32,8 @@ export default function ItemDetail( { item } ) {
           <p className="descripcion">{item.caracteristica}</p>
           <p className="item-precio-nombre">precio: <span className="item-precio">{item.precio}</span></p>
           {
-            cambiarBoton
+            //cambiarBoton
+            isInCart(item.id)
             ?
             <Link to={"/carrito"}><button className="boton-operacion">Ir al carrito</button></Link>
             :
