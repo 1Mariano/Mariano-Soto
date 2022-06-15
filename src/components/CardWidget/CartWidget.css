@@ -1,4 +1,15 @@
 .total-cart{
-    font-size: 20px;
-    padding:  0 10px 0 0;
+    font-size: 15px;
+    margin: -28px 40px 0 0;
+    z-index: 999;
+    background-color: #ec0df2;
+    border-radius: 50%;
+    padding: 0 5px;
+    position: absolute;
+    color: white;
+    
+}
+
+.hidden{
+    display: none;
 }

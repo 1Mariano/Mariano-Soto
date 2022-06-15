@@ -9,8 +9,10 @@ import {  useNavigate } from 'react-router-dom';
 const ItemListContainer = ( )=> {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate()
+  
 
+  const navigate = useNavigate()
+  
   const handleVolver= () =>{
     navigate(-1)
   }
@@ -22,7 +24,7 @@ const ItemListContainer = ( )=> {
 
     pedirDatos()
         .then((resp) => {
-          setItems( resp )
+          setItems( resp)
         })
         .catch((error) => {
           console.log('ERROR', error)
@@ -32,6 +34,23 @@ const ItemListContainer = ( )=> {
         })
   }, [])
 
+  /*const ordenarItemsMenorPrecio = () => {
+    setItems(items.sort((a,b) => a.precio - b.precio))
+  }
+
+  const ordenarItemsMayorPrecio = () => {
+    setItems(items.sort((a,b) =>  b.precio - a.precio ))
+  }
+
+  const filtrarMarcaNvidia = () => {
+    setItems(items.filter(item => item.marca === "nvidia"))
+  }
+
+  const filtrarMarcaAmd = () => {
+    setItems(items.filter(item => item.marca === "amd"))
+  }*/
+      
+
   return (
       <div className="fondo-cards-contenedor">
         <div className="section-black">
@@ -39,16 +58,22 @@ const ItemListContainer = ( )=> {
             <div className="boton-productos">
             <button className="boton-inicio"  onClick={handleVolver}>Volver</button>
             </div>
+            
             {
               loading
               ?
               <p className="cargando">Cargando...</p>
-              :
+              : 
               <ItemList items={items}/>
+              
+              
+
             }
+            
             <div className="boton-productos">
             <button className="boton-inicio"  onClick={handleVolver}>Volver</button>
             </div>
+            
           </div>
         </div>
       </div>

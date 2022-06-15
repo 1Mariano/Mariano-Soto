@@ -22,7 +22,7 @@ export const Navbar = () => {
           {/*evitar vulnerabilidades con "rel="noreferrer"*/}
           <Link to={"/"} className="botones-menu" rel="noreferrer"><AiFillHome className="iconos" /><li>Inicio</li></Link>
           <Link to={"/productos"} className="botones-menu" rel="noreferrer"><IoIosListBox className="iconos" /><li>Productos</li></Link>
-          <Link to={"/carrito"} className="botones-menu" rel="noreferrer"><CartWidget className="iconos"/><li>Carrito</li></Link>
+          <Link to={"/carrito"} className="botones-menu" rel="noreferrer"><CartWidget className="iconos "/><li className="carrito-icon">Carrito</li></Link>
           <Link to={"/informacion"} className="botones-menu" rel="noreferrer"><AiFillInfoCircle className="iconos" /><li>Información</li></Link>
         </ul>
       </nav>

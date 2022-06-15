@@ -5,9 +5,9 @@ import "./CartWidget.css"
 export  const CartWidget = () => {
 
     const { totalQuantity } = useCartContext()
-
+    
     return <>
-        <span className="total-cart">{totalQuantity()}</span>
+        <span className={`total-cart ${totalQuantity() === 0 ? "hidden" : ""}`}>{totalQuantity()}</span>
         <BsFillCartCheckFill className="iconos"/>
     </>
         

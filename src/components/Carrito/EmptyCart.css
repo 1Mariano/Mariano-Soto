@@ -1,0 +1,52 @@
+.boton-inicio-vacio{
+    width: 30%;
+    min-width: 130px;
+    padding: 20px;
+    text-transform: uppercase;
+    user-select: none;
+    display: inline-block;
+    text-align: center;
+    min-width: 213px;
+  }
+  
+  /* boton inicio */
+  .boton-inicio-vacio {
+      
+      font-size: 23px;
+      cursor: pointer;
+      border: 1px solid;
+      outline: none;
+      background: transparent;
+      color: rgb(0, 0, 0);
+      user-select: none;
+      font-weight: 700;
+      position: relative;
+      transition: all 0.5s;
+      z-index: 1;
+      height: 70px;
+      color: white;
+     }
+     
+     .boton-inicio-vacio::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: white;
+      z-index: -1;
+      transition: all 0.5s;
+     }
+     
+     .boton-inicio-vacio:hover::before {
+      width: 100%;
+     }
+     
+     .boton-inicio-vacio:hover {
+      color: black
+     }
+     
+     .boton-inicio-vacio:active:before {
+      background: #b9b9b9;
+     }
