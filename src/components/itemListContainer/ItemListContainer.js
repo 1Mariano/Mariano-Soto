@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./ItemListContainer.css";
-import { pedirDatos } from "../../mock/pedirDatos"
+//import { pedirDatos } from "../../mock/pedirDatos"
 import { ItemList } from '../ItemList/ItemList';
 import {  useNavigate } from 'react-router-dom';
-
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 
 const ItemListContainer = ( )=> {
@@ -17,12 +18,31 @@ const ItemListContainer = ( )=> {
     navigate(-1)
   }
   
-
+  
 
   useEffect(()=>{
     setLoading(true)
 
-    pedirDatos()
+    // defino la referencia a mi base de datos 
+    const productosRef = collection(db, "datos")
+
+    getDocs(productosRef)
+      .then((resp) => {
+        const newItems = resp.docs.map((doc) => {
+          return{
+            id: doc.id,
+            ...doc.data()
+          }
+        })
+        console.log(newItems)
+        setItems(newItems)
+      })
+      .finally(()=>{
+        setLoading(false)
+      })
+
+
+    /*pedirDatos()
         .then((resp) => {
           setItems( resp)
         })
@@ -31,7 +51,7 @@ const ItemListContainer = ( )=> {
         })
         .finally(()=>{
           setLoading(false)
-        })
+        })*/
   }, [])
 
   /*const ordenarItemsMenorPrecio = () => {

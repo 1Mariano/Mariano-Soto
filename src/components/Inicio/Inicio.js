@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import "./Inicio.css"
-import { pedirDatosUnicoProducto } from '../../mock/pedirDatos';
+//import { pedirDatosUnicoProducto } from '../../mock/pedirDatos';
 import { Link, useParams } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 
 export default function Inicio() {
@@ -13,7 +15,27 @@ export default function Inicio() {
     useEffect(()=>{
         setLoading(true)
 
-        pedirDatosUnicoProducto( )
+        // referencia a la base de datos 
+        const datosRef = collection(db, "datos")
+        const queryBuscador = query(datosRef, where("oferta", "==", true))
+
+        // async llamar a firebase
+        getDocs(queryBuscador)
+            .then((resp) => {
+                const newItems = resp.docs.map((doc) => {
+                    return{
+                        id: doc.id,
+                        ...doc.data()
+                    }
+                })
+                console.log(newItems)
+                setItem(newItems)
+            })
+            .finally(()=>{
+                setLoading(false)
+            })
+
+        /*pedirDatosUnicoProducto( )
             .then((resp)=>{
                 setItem(resp.filter((item) => item.oferta === true))
                 
@@ -23,7 +45,7 @@ export default function Inicio() {
               })
             .finally(()=>{
                 setLoading(false)
-            })
+            })*/
     },[itemId])
 
   return (
