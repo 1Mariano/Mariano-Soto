@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useCartContext } from '../../context/CartContext'
 
 
@@ -25,7 +26,7 @@ export default function Carrito() {
             <h6 className="map-tamaño ">Precio/u: ${item.precio} </h6>
             <h6 className="map-tamaño">Precio/t: ${ item.precio * item.cantidadItems }</h6>
 
-            <button className="boton-carrito boton-carrito-item " onClick={()=> removeItem(item.id)}>Remover Item</button>
+            <button className="boton-carrito-rem boton-carrito-item " onClick={()=> removeItem(item.id)}>Remover</button>
           </div>
         ))
       }
@@ -33,6 +34,7 @@ export default function Carrito() {
       <h4> Total: ${totalPrice()}</h4>
       
       <button className="boton-carrito" onClick={emptyCart}> Vaciar Carrito</button>
+      <Link className="cart-boton_confirm" to="/checkout">Terminar Mi Compra</Link>
       
     </div>
   )

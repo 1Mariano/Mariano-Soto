@@ -67,7 +67,8 @@
 .botones-menu:hover, .active {
     background-color: rgba(0, 0, 0, .3);
     transform: scale(1.1);
-    transition: all .8s;
+    transition: all .8s ease-in;
+    
     color: white;
     -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);
     -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.63);

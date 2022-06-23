@@ -74,8 +74,9 @@
 }
 
 .cards:hover{
-    transform: scale(1.02);
-    transition: all 1s;
+    transform: scale(1.05);
+    transition: transform 1s ease-in-out;
+    z-index: 999;
 }
 
 .boton-cards:hover{
