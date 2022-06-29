@@ -4,6 +4,23 @@ import { useCartContext } from "../../context/CartContext"
 import { collection, getDocs, addDoc, writeBatch, query, where, documentId  } from "firebase/firestore"
 import { db } from "../../firebase/config"
 import "./Checkout.css"
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+
+const schema = Yup.object().shape({
+  nombre: Yup.string()
+              .required("Este campo es obligatorio")
+              .min(4, "El nombre es demasiado corto")
+              .max(30, "Maximo 30 caracteres"),
+  email: Yup.string()
+              .required("Este campo es obligatorio")
+              .email("Formato de email inválido"),
+  direccion: Yup.string()
+              .required("Este campo es obligatorio")
+              .min(4, "La direccion es demasiado corto")
+              .max(30, "Maximo 30 caracteres")
+})
+
 
 
 export default function Checkout() {
@@ -11,43 +28,15 @@ export default function Checkout() {
     const { carrito, totalPrice ,emptyCart } = useCartContext()
     
     const [ orderId, setOrderID ] = useState(null)
-    const [ values, setValues ] = useState({
-      nombre: '',
-      email: '',
-      direccion: ''
-    })
+    
+    const generarOrden = async (values) => {
+      const orden = {
+        buyer: values,
+        items: carrito.map(({id, cantidadItems, nombre, precio}) => ({id,cantidadItems, nombre, precio})),
+        total: totalPrice()
+      }
 
-    const handleInputChange = (e) => {
-      setValues({
-        ...values,
-        [e.target.name]: e.target.value
-      })
-      console.log(e.target.value)
-    }
-
-    const handleSubmit = async (e) =>{
-        e.preventDefault()
-        
-        if(values.nombre.length < 5){
-          alert("El nombre es demasiado corto")
-          return
-        }
-
-        if(values.email.length < 5){
-          alert("El email es invalido")
-        }
-
-        if(values.direccion.length < 5){
-          alert("La direccion no es correcta")
-        }
-
-        const orden = {
-          buyer: values,
-          items: carrito.map(({id, cantidadItems, nombre, precio}) => ({id, cantidadItems, nombre, precio})),
-          total: totalPrice()
-        }
-
-        const batch = writeBatch(db)
+      const batch = writeBatch(db)
         const ordersRef = collection(db, "orders")
         const productosRef = collection(db, "datos")
         
@@ -68,11 +57,6 @@ export default function Checkout() {
             outOfStock.push(itemToUpdate)
           }
 
-          /*if(doc.data().cantidad === 0){
-            batch.update(doc.ref, {
-              inicial: 0
-            })
-        }*/
         })
         if(outOfStock.length === 0){
           addDoc(ordersRef, orden)
@@ -87,9 +71,6 @@ export default function Checkout() {
         }
     }
 
-    
-
-    
 
     if(orderId){
       return(
@@ -107,32 +88,56 @@ export default function Checkout() {
   return (
     <div className="contenedor-formulario">
         <h2 className="confirmacion">Checkout</h2>
-        <form onSubmit={handleSubmit} className="formulario-checkout">
-            <div className="form-div">
-              <label className="label">Nombre:</label>
-              <input className="input-form" 
-                     placeholder="Ingrese su Nombre"
-                     name="nombre"
-                     onChange={handleInputChange} />
-            </div>
-            <div className="form-div">
-              <label className="label">Email:</label>
-              <input className="input-form" 
-                     placeholder="Ingrese su Email"
-                     name="email" 
-                     onChange={handleInputChange}/>
-            </div>
-            <div className="form-div">
-              <label className="label">Direccion:</label>
-              <input className="input-form" 
-                     placeholder="Ingrese su Direccion" 
-                     name="direccion"
-                     onChange={handleInputChange}/>
-            </div>
-            
+        <Formik 
+          initialValues={ {
+            nombre: '',
+            email: '',
+            direccion: ''
+          } }
+          onSubmit={generarOrden}
+          validationSchema= {schema}
+          >
+            {(formik) => (
+              <form onSubmit={formik.handleSubmit} className="formulario-checkout">
+                <div className="form-div">
+                  <label className="label">Nombre:</label>
+                  <input className="input-form"
+                        value={formik.values.nombre} 
+                        placeholder="Ingrese su Nombre"
+                        type={"text"}
+                        name="nombre"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
+                  {formik.touched.nombre && formik.errors.nombre ? (<p className="error-form">{formik.errors.nombre}</p>) : null}
+                </div>
+                <div className="form-div">
+                  <label className="label">Email:</label>
+                  <input className="input-form" 
+                        value={formik.values.email}
+                        placeholder="Ingrese su Email"
+                        type={"text"}
+                        name="email" 
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}/>
+                  {formik.touched.email && formik.errors.email ? (<p className="error-form">{formik.errors.email}</p>) : null}
+                </div>
+                <div className="form-div">
+                  <label className="label">Direccion:</label>
+                  <input className="input-form" 
+                        value={formik.values.direccion}
+                        placeholder="Ingrese su Direccion" 
+                        type={"text"}
+                        name="direccion"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}/>
+                  {formik.touched.direccion && formik.errors.direccion ? (<p className="error-form">{formik.errors.direccion}</p>) : null}
+                </div>
 
-            <button className="boton-form" type="submit">Enviar</button>
-        </form>
+              <button className="boton-form" type="submit">Enviar</button>
+              </form>
+            )}
+        </Formik>
+        
         <button className="boton-form-cancelar" onClick={emptyCart}>Cancelar Mi Compra</button>
     </div>
   )

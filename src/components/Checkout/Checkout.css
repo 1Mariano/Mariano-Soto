@@ -120,6 +120,16 @@
     user-select: none;
 }
 
+/*Formulario*/
+.error-form{
+    background-color: rgb(126, 33, 33);
+    text-align: center;
+    padding: 5px 0;
+    color: white;
+    
+}
+
+
 @media(max-width:980px){
     .contenedor-formulario{
         width: 100%;
