@@ -1,0 +1,21 @@
+import React from 'react'
+import { BrowserRouter} from "react-router-dom";
+import { useAuthContext } from '../context/AuthContext';
+import PrivateRoutes from './PrivateRoutes';
+import PublicRoutes from './PublicRoutes';
+export default function AppRouter() {
+
+    const {auth} = useAuthContext()
+
+    console.log(auth) 
+
+  return (
+    
+    <BrowserRouter>
+        { auth.loggedIn
+          ? <PrivateRoutes />
+          : <PublicRoutes />
+        }
+  </BrowserRouter>
+  )
+}
