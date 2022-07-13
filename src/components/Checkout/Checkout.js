@@ -6,6 +6,12 @@ import { db } from "../../firebase/config"
 import "./Checkout.css"
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import {  useNavigate } from 'react-router-dom';
+
+
+
+
+
 
 const schema = Yup.object().shape({
   nombre: Yup.string()
@@ -26,6 +32,11 @@ const schema = Yup.object().shape({
 export default function Checkout() {
     
     const { carrito, totalPrice ,emptyCart } = useCartContext()
+    const navigate = useNavigate()
+  
+    const handleVolver= () =>{
+    navigate(-1)
+    }
     
     const [ orderId, setOrderID ] = useState(null)
     
@@ -87,7 +98,10 @@ export default function Checkout() {
 
   return (
     <div className="contenedor-formulario">
+        <div className='boton-contenedor-inicio-info'><button className="boton-inicio-info"  onClick={handleVolver}>Volver</button></div>
         <h2 className="confirmacion">Checkout</h2>
+        
+        
         <Formik 
           initialValues={ {
             nombre: '',
@@ -136,9 +150,11 @@ export default function Checkout() {
               <button className="boton-form" type="submit">Enviar</button>
               </form>
             )}
-        </Formik>
+        </Formik> 
+        
         
         <button className="boton-form-cancelar" onClick={emptyCart}>Cancelar Mi Compra</button>
+        <div className='boton-contenedor-inicio-info'><button className="boton-inicio-info"  onClick={handleVolver}>Volver</button></div>
     </div>
   )
 }

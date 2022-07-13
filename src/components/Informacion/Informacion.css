@@ -1,0 +1,123 @@
+.contenedor-informacion{
+    min-height: 80vh;
+    width: 90%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+    
+}
+
+.correo{
+    padding: 10px;
+}
+
+.formulario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.buscar{
+    padding: 5px 15px;
+}
+
+/*Arrays de compras*/
+.compras{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid green;
+    width: 100vw;
+    max-width: 1000px;
+    padding: 10px 0;
+    margin-top: 10px;
+    
+    
+}
+
+.compras-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid greenyellow;
+    padding: 10px;
+}
+
+.correo-no{
+    padding: 10px 20px;
+    background-color: red;
+    margin-top: 10px;
+    color: white;
+    border-radius: 3%;
+}
+
+
+/*volver*/
+.boton-contenedor-inicio-info{
+    width: 40%;
+    margin: 0 auto ;
+    padding: 20px 0;
+}
+.boton-inicio-info{
+  width: 100%;
+  min-width: 130px;
+  padding: 20px;
+  text-transform: uppercase;
+  user-select: none;
+  display: inline-block;
+  
+    
+}
+
+/* boton inicio */
+.boton-inicio-info {
+    
+    font-size: 23px;
+    cursor: pointer;
+    border: 1px solid;
+    outline: none;
+    background: transparent;
+    color: rgb(0, 0, 0);
+    user-select: none;
+    font-weight: 700;
+    position: relative;
+    transition: all 0.5s;
+    z-index: 1;
+    height: 70px;
+    color: black;
+   }
+   
+   .boton-inicio-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: wheat;
+    z-index: -1;
+    transition: all 0.5s;
+   }
+   
+   .boton-inicio-info:hover::before {
+    width: 100%;
+   }
+   
+   .boton-inicio-info:hover {
+    color: black;
+   }
+   
+   .boton-inicio-info:active:before {
+    background: #b9b9b9;
+   }

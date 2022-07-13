@@ -8,7 +8,6 @@ import { CartContext } from "../../context/CartContext"
 export default function ItemDetail( { item } ) {
   
   const [cantidadItems, setCantidadItems] = useState(1)
-  //const [cambiarBoton, setCambiarBoton] = useState(false)
 
   const { addItem, isInCart } = useContext(CartContext)
 

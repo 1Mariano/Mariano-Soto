@@ -3,7 +3,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import {  useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/config';
-//import { pedirDatosUnicoProducto } from '../../mock/pedirDatos';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import "./ItemDetailContainer.css"
 export default function ItemDetailContainer(  ) {
@@ -11,7 +10,6 @@ export default function ItemDetailContainer(  ) {
     const [loading, setLoading] = useState(true);
     
     const { itemId } = useParams()
-    //console.log(itemId)
     const navigate = useNavigate()
 
     const handleVolver= () =>{
@@ -32,17 +30,6 @@ export default function ItemDetailContainer(  ) {
           .finally(()=>{
             setLoading(false)
           })
-        /*pedirDatosUnicoProducto( )
-            .then((resp)=>{
-                setItem(resp.find((item) => item.id === Number(itemId)))
-                
-            })
-            .catch((error) => {
-                console.log('ERROR', error)
-              })
-            .finally(()=>{
-                setLoading(false)
-            })*/
     },[itemId]) 
 
 

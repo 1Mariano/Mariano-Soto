@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import "./Inicio.css"
-//import { pedirDatosUnicoProducto } from '../../mock/pedirDatos';
 import { Link, useParams } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -35,17 +34,6 @@ export default function Inicio() {
                 setLoading(false)
             })
 
-        /*pedirDatosUnicoProducto( )
-            .then((resp)=>{
-                setItem(resp.filter((item) => item.oferta === true))
-                
-            })
-            .catch((error) => {
-                console.log('ERROR', error)
-              })
-            .finally(()=>{
-                setLoading(false)
-            })*/
     },[itemId])
 
   return (

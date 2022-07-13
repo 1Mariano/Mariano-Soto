@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
         userId: null
     })
 
-    console.log(auth)
+    
 
     const [error, setError] = useState({})
 
